@@ -2,9 +2,11 @@ from docopt import docopt
 
 help = """
 
-Usage: computor.py <argument_positionel>
+Usage: computor.py <argument>
 
 """
 
 arguments = docopt(help)
-print(arguments)
+equation = str(arguments['<argument>'])
+
+print(equation)
