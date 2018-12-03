@@ -6,7 +6,7 @@
 #    By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/02 19:06:21 by rloulizi          #+#    #+#              #
-#    Updated: 2018/12/03 20:19:47 by rloulizi         ###   ########.fr        #
+#    Updated: 2018/12/03 20:41:51 by rloulizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,12 @@ def parser(x, y):
     x_list = x.split(' ')
     y_list = y.split(' ')
     if x_list[-1] == 'X^0' and y_list[-1] == 'X^0':
-        print("the solution is |R")
-        sys.exit(0)
+        if x_list[0] == y_list[0]:
+            print("the solution is |R")
+            sys.exit(0)
+        else:
+            print("no solution")
+            sys.exit(0)
     try:
         if x_list[-1] == "X^2":
             power['two'].append(x_list[7] + x_list[8])
