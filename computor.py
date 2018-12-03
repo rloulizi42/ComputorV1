@@ -6,7 +6,7 @@
 #    By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/02 19:06:21 by rloulizi          #+#    #+#              #
-#    Updated: 2018/12/03 19:22:16 by rloulizi         ###   ########.fr        #
+#    Updated: 2018/12/03 20:00:13 by rloulizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,42 +40,46 @@ def regex_and_split(help):
         return x[:-1], y[1:]
 
 def parser(x, y):
-    x_list = x.split(' ')
-    if x_list[-1] == "X^2":
-        power['two'].append(x_list[7] + x_list[8])
-        power['one'].append(x_list[3] + x_list[4])
-        power['zero'].append(x_list[0])
-        power['power'] = 2
-    elif x_list[-1] == "X^1":
-        power['one'].append(x_list[3] + x_list[4])
-        power['zero'].append(x_list[0])
-        power['power'] = 1
-    elif x_list[-1] == "X^0":
-        power['zero'].append(x_list[0])
-        power['power'] = 0
-    elif x_list[-1] not in ("X^0", "X^1", "X^2"):
-        print("The polynomial degree is stricly greater than 2, I can t solve.")
-        sys.exit(0)
-    y_list = y.split(' ')
-    if y_list[-1] == "X^2":
-        power['two'].append("-" + y_list[8])
-        power['one'].append("-" + y_list[4])
-        power['zero'].append(y_list[0])
+    try:
+        x_list = x.split(' ')
+        if x_list[-1] == "X^2":
+            power['two'].append(x_list[7] + x_list[8])
+            power['one'].append(x_list[3] + x_list[4])
+            power['zero'].append(x_list[0])
+            power['power'] = 2
+        elif x_list[-1] == "X^1":
+            power['one'].append(x_list[3] + x_list[4])
+            power['zero'].append(x_list[0])
+            power['power'] = 1
+        elif x_list[-1] == "X^0":
+            power['zero'].append(x_list[0])
+            power['power'] = 0
+        elif x_list[-1] not in ("X^0", "X^1", "X^2"):
+            print("The polynomial degree is stricly greater than 2, I can t solve.")
+            sys.exit(0)
+        y_list = y.split(' ')
+        if y_list[-1] == "X^2":
+            power['two'].append("-" + y_list[8])
+            power['one'].append("-" + y_list[4])
+            power['zero'].append(y_list[0])
         if power['power'] < 2:
             power['power'] = 2
-    elif y_list[-1] == "X^1":
-        power['one'].append("-" + y_list[4])
-        power['zero'].append(y_list[0])
+        elif y_list[-1] == "X^1":
+            power['one'].append("-" + y_list[4])
+            power['zero'].append(y_list[0])
         if power['power'] < 1:
             power['power'] = 1
-    elif y_list[-1] == "X^0":
-        power['zero'].append("-" + y_list[0])
+        elif y_list[-1] == "X^0":
+            power['zero'].append("-" + y_list[0])
         if power['power'] < 0:
             power['power'] = 0
-    elif y_list[-1] not in ("X^0", "X^1", "X^2"):
-        print("The polynomial degree is stricly greater than 2, I can t solve.")
+        elif y_list[-1] not in ("X^0", "X^1", "X^2"):
+            print("The polynomial degree is stricly greater than 2, I can t solve.")
+            sys.exit(0)
+        return power
+    except:
+        print("Unordered degree")
         sys.exit(0)
-    return power
 
 def lstrip(power):
     lzero, lone, ltwo = [], [], []
