@@ -6,7 +6,7 @@
 #    By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/02 19:06:21 by rloulizi          #+#    #+#              #
-#    Updated: 2018/12/04 16:40:14 by rloulizi         ###   ########.fr        #
+#    Updated: 2018/12/04 18:07:07 by rloulizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,9 @@ def regex_and_split(help):
 def parser(x, y):
     x_list = x.split(' ')
     y_list = y.split(' ')
-    if x_list[-1] == 'X^0' and y_list[-1] == 'X^0':
-        if x_list[0] == y_list[0]:
-            print("the solution is |R")
-            sys.exit(0)
-        else:
-            print("no solution")
-            sys.exit(0)
+    if x_list == y_list:
+        print("the solution is |R")
+        sys.exit(0)
     try:
         if x_list[-1] == "X^2":
             power['two'].append(x_list[7] + x_list[8])
@@ -82,9 +78,6 @@ def parser(x, y):
                 power['power'] = 0
         if y_list[-1] not in ("X^0", "X^1", "X^2"):
             print("The polynomial degree is stricly greater than 2, I can t solve.")
-            sys.exit(0)
-        if x_list[-1] == '0' and y_list[-1] == '0':
-            print("the solution is |R")
             sys.exit(0)
         return power
     except:
