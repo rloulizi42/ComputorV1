@@ -6,7 +6,7 @@
 #    By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/02 19:06:21 by rloulizi          #+#    #+#              #
-#    Updated: 2018/12/03 20:41:51 by rloulizi         ###   ########.fr        #
+#    Updated: 2018/12/04 16:40:14 by rloulizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,18 +68,18 @@ def parser(x, y):
         if y_list[-1] == "X^2":
             power['two'].append("-" + y_list[8])
             power['one'].append("-" + y_list[4])
-            power['zero'].append(y_list[0])
-        if power['power'] < 2:
-            power['power'] = 2
+            power['zero'].append("-" + y_list[0])
+            if power['power'] < 2:
+                power['power'] = 2
         if y_list[-1] == "X^1":
             power['one'].append("-" + y_list[4])
-            power['zero'].append(y_list[0])
-        if power['power'] < 1:
-            power['power'] = 1
+            power['zero'].append("-" + y_list[0])
+            if power['power'] < 1:
+                power['power'] = 1
         if y_list[-1] == "X^0":
             power['zero'].append("-" + y_list[0])
-        if power['power'] < 0:
-            power['power'] = 0
+            if power['power'] < 0:
+                power['power'] = 0
         if y_list[-1] not in ("X^0", "X^1", "X^2"):
             print("The polynomial degree is stricly greater than 2, I can t solve.")
             sys.exit(0)
@@ -152,6 +152,7 @@ def discriminant_2(power):
             power['discriminant'] = ["("+str((b * -1)) + " - " + power['delta'] + ") / " +  str(2 * a), "("+str((b * -1)) + " + " + power['delta'] + ") / " +  str(2 * a)]
         else:
             power['discriminant'] = ["("+str((b)) + " - " + power['delta'] + ") / " +  str(2 * a), "("+      str((b)) + " + " + power['delta'] + ") / " +  str(2 * a)]
+    power['delta'] = d
     return power
 
 def choice_power(power):
@@ -181,11 +182,11 @@ def result(power):
     if power['power'] == 2:
         if power['delta'] == 0:
             print("Discriminant is 0, the solution is:\n" + str(power['discriminant']))
-        if power['delta'] > 0:
+        if int(power['delta']) > 0:
             print("Discriminant is strictly positive, the two solutions are:")
             print(str(power['discriminant'][0]))
             print(str(power['discriminant'][1]))
-        if power['delta'] < 0:
+        if int(power['delta']) < 0:
             print("Discriminant is strictly negative, the two complex solutions are:")
             print(str(power['discriminant'][0]))
             print(str(power['discriminant'][1]))
