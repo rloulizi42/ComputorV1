@@ -6,7 +6,7 @@
 #    By: rloulizi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/02 19:06:21 by rloulizi          #+#    #+#              #
-#    Updated: 2018/12/04 18:07:07 by rloulizi         ###   ########.fr        #
+#    Updated: 2018/12/05 14:58:55 by rloulizi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,10 @@ def parser(x, y):
     if x_list == y_list:
         print("the solution is |R")
         sys.exit(0)
+    if x_list[-1] == y_list[-1]:
+        if x_list[0] != y_list[0]:
+            print("No Solutions")
+            sys.exit(0)
     try:
         if x_list[-1] == "X^2":
             power['two'].append(x_list[7] + x_list[8])
@@ -144,7 +148,7 @@ def discriminant_2(power):
         if b > 0:
             power['discriminant'] = ["("+str((b * -1)) + " - " + power['delta'] + ") / " +  str(2 * a), "("+str((b * -1)) + " + " + power['delta'] + ") / " +  str(2 * a)]
         else:
-            power['discriminant'] = ["("+str((b)) + " - " + power['delta'] + ") / " +  str(2 * a), "("+      str((b)) + " + " + power['delta'] + ") / " +  str(2 * a)]
+            power['discriminant'] = ["("+str((b)) + " - " + power['delta'] + ") / " +  str(2 * a), "("+  str((b)) + " + " + power['delta'] + ") / " +  str(2 * a)]
     power['delta'] = d
     return power
 
