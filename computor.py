@@ -171,6 +171,7 @@ def reduced_form(power):
         print("Reduced form: " + str(power['zero']) + " * X^0 " + char_positive_or_negative(power['one']) + str(power['one']) + " * X^1 " + char_positive_or_negative(power['two']) + str(power['two']) + " * X^2 = 0")
     if power['power'] == 1:
         print("Reduced form: " + str(power['zero']) + " * X^0 " + char_positive_or_negative(power['one']) + str(power['one']) + " * X^1 = 0")
+    polynomial_degree(power)
     result(power)
 
 def polynomial_degree(power):
@@ -196,5 +197,4 @@ if __name__ == '__main__':
     power = lstrip(parser(x, y))
     power = atofloat(power)
     power = choice_power(power)
-    polynomial_degree(power)
     reduced_form(power)
